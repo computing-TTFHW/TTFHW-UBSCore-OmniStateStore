@@ -1,0 +1,111 @@
+{
+  "project": "OmniStateStore",
+  "build_system": "CMake + Make",
+  "compiler_launcher": "ccache",
+  "container": "openeuler/openeuler:22.03-lts-sp4",
+  "timestamp": "2026-04-29T04:29:30Z",
+  "phases": {
+    "build": {
+      "description": "Full build (Release mode, clean build)",
+      "duration_seconds": 347.691,
+      "steps": {
+        "cmake_configure": {
+          "duration_seconds": 41.293
+        },
+        "make_build": {
+          "duration_seconds": 306.386
+        }
+      }
+    },
+    "incremental_build": {
+      "description": "Incremental build after modifying 1 source file (Release mode with ccache)",
+      "duration_seconds": 72.745,
+      "ccache": {
+        "hit_direct": 0,
+        "hit_preprocessed": 1,
+        "hit_total": 1,
+        "miss": 0,
+        "hit_rate_percent": 100.0,
+        "files_in_cache": 343,
+        "cache_size": "340.9 MB"
+      }
+    },
+    "ut": {
+      "description": "Unit test build and execution (Debug mode, BUILD_TESTS=ON)",
+      "duration_seconds": 1278.299,
+      "steps": {
+        "cmake_configure": {
+          "duration_seconds": 65.064
+        },
+        "make_build": {
+          "duration_seconds": 925.287
+        },
+        "test_execution": {
+          "duration_seconds": 303.874,
+          "gtest_elapsed": "204809 ms",
+          "total": 296,
+          "passed": 296,
+          "failed": 0,
+          "skipped": 0,
+          "result": "PASSED",
+          "top10_slowest_tests": [
+            {
+              "rank": 1,
+              "name": "TestDB.test_cp_lsm_and_get_return_ok_with_blob",
+              "duration_ms": 20049
+            },
+            {
+              "rank": 2,
+              "name": "TestSavepoint.TestSavePoint",
+              "duration_ms": 10460
+            },
+            {
+              "rank": 3,
+              "name": "TestFile.test_write_level4_return_ok",
+              "duration_ms": 10074
+            },
+            {
+              "rank": 4,
+              "name": "TestDB.test_put_kv_kmap_to_lsm_store_and_get_return_ok_with_blob",
+              "duration_ms": 10047
+            },
+            {
+              "rank": 5,
+              "name": "TestDB.test_put_kmap_to_all_table_and_get_return_ok_with_blob",
+              "duration_ms": 10037
+            },
+            {
+              "rank": 6,
+              "name": "TestDB.test_put_kv_kmap_nskv_to_all_table_and_get_return_ok_with_blob",
+              "duration_ms": 10036
+            },
+            {
+              "rank": 7,
+              "name": "TestDB.test_cp_and_get_return_ok",
+              "duration_ms": 7980
+            },
+            {
+              "rank": 8,
+              "name": "TestDB.test_cp_local_recovery_ok",
+              "duration_ms": 7504
+            },
+            {
+              "rank": 9,
+              "name": "TestDB.test_KMap_to_lsm_store_and_get_return_ok_with_no_ttl",
+              "duration_ms": 6482
+            },
+            {
+              "rank": 10,
+              "name": "TestDB.test_KMap_to_lsm_store_and_get_return_false_with_ttl",
+              "duration_ms": 6459
+            }
+          ],
+          "failed_tests_note": "初始 pipeline 运行时偶发失败: TestDB.test_sp_list_and_get_return_ok, TestDB.test_KList_to_lsm_store_and_get_return_false_with_ttl; 原因: TTL 超时(5s) + savepoint 异步竞态, 容器 I/O 延迟下时序容差偏紧; 重跑全部通过"
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_duration_seconds": 1793.783
+  }
+}
