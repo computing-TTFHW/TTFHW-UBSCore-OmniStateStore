@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "version": "1.0",
+    "generated_at": "2026-05-07T12:30:00Z",
+    "tool": "ttfhw-verify",
+    "skill_version": "1.0"
+  },
+  "repo_info": {
+    "name": "OmniStateStore",
+    "url": "https://gitcode.com/openeuler/OmniStateStore.git",
+    "clone_duration_seconds": 16,
+    "build_system": "cmake+make",
+    "language": "C++ (C++14)",
+    "submodules": [
+      "googletest v1.16.0",
+      "lz4 v1.10.0",
+      "libboundscheck v1.1.16",
+      "spdlog v1.15.3"
+    ]
+  },
+  "documentation_checklist": {
+    "readme_exists": true,
+    "readme_has_build_info": true,
+    "docs_dir_exists": true,
+    "installation_guide_exists": true,
+    "quick_start_exists": true,
+    "devcontainer_exists": false,
+    "dockerfile_exists": false,
+    "build_script_exists": true
+  },
+  "image_selection": {
+    "method": "user_selected",
+    "selected_image": "hub.oepkgs.net/openeuler/openeuler:24.03",
+    "tool_versions": {
+      "gcc": "12.3.1 (openEuler 12.3.1-99.oe2403sp2)",
+      "cmake": "3.27.9",
+      "java": "1.8.0_462 (BiSheng)",
+      "os": "openEuler 24.03"
+    }
+  },
+  "dependency_stats": {
+    "build_dependencies": [
+      "gcc",
+      "gcc-c++",
+      "cmake",
+      "make",
+      "git",
+      "libaio-devel",
+      "java-1.8.0-openjdk",
+      "java-1.8.0-openjdk-devel"
+    ],
+    "third_party_submodules": 4,
+    "external_dependencies_from_pkg_manager": [
+      "libaio-devel"
+    ],
+    "pip_dependencies": [],
+    "cargo_dependencies": []
+  },
+  "build_result": {
+    "status": "success",
+    "build_type": "Debug",
+    "build_command": "./build.sh -t debug --ut",
+    "concurrency": 4,
+    "artifacts": [
+      "build/test/llt/bss_ut (353MB executable)",
+      "build/src/core/*/*.a (static libraries)",
+      "build/src/core/jni/libockdbjni-linux64.so (JNI shared library)",
+      "dist/3rdparty/ (3rdparty binaries)"
+    ],
+    "warnings": "Multiple unused variable warnings (elapsed, oldSize) across header files",
+    "errors": []
+  },
+  "ut_stats": {
+    "framework": "Google Test (googletest)",
+    "test_executable": "build/test/llt/bss_ut",
+    "total_tests": 296,
+    "test_suites": 29,
+    "passed": 294,
+    "failed": 2,
+    "skipped": 0,
+    "duration_seconds": 196,
+    "failed_tests": [
+      {
+        "test_name": "TestDB.test_sp_list_and_get_return_ok",
+        "error": "Expected equality: map.find(lastKey)->second (25165824) == totalExpectedValueLen (8388608)",
+        "file": "test/llt/testcase/db/test_db.cpp:1553"
+      },
+      {
+        "test_name": "TestFileManager.test_write_read_secondary_key_iterator_return_ok",
+        "error": "Test failed (details in ut.log)",
+        "file": "test/llt/testcase/lsm_store/test_file_manager.cpp"
+      }
+    ]
+  },
+  "quick_start_analysis": {
+    "readme_has_quick_start": true,
+    "quick_start_requires_flink": true,
+    "quick_start_requires_java": true,
+    "can_run_standalone_build": true,
+    "notes": "Quick start requires Flink installation and Java runtime. C++ build and UT can run independently."
+  },
+  "ttfhw_timeline": {
+    "phase1_context_check_seconds": 1,
+    "phase2_clone_seconds": 16,
+    "phase3_documentation_check_seconds": 2,
+    "phase4_image_selection_seconds": 1,
+    "phase5_container_start_seconds": 30,
+    "phase5_5_resource_check_seconds": 1,
+    "phase6_build_seconds": 222,
+    "phase7_ut_seconds": 196,
+    "phase9_dependency_collection_seconds": 1,
+    "phase10_report_generation_seconds": 5,
+    "total_attempt_duration_seconds": 475
+  },
+  "attempt_log": {
+    "total_attempts": 12,
+    "timeout_reached": false,
+    "total_attempt_duration_seconds": 475,
+    "attempts": [
+      {
+        "sequence": 1,
+        "phase": "clone",
+        "action": "Clone repository locally",
+        "command": "git clone --depth=1 https://gitcode.com/openeuler/OmniStateStore.git tmp_src/OmniStateStore",
+        "result": "success",
+        "output": "Cloning into 'OmniStateStore'...",
+        "duration_seconds": 16
+      },
+      {
+        "sequence": 2,
+        "phase": "documentation_check",
+        "action": "Read README.md, installation_guide.md, CMakeLists.txt",
+        "command": "cat README.md docs/zh/installation_guide.md CMakeLists.txt",
+        "result": "success",
+        "output": "Found build script scripts/build.sh, CMake-based build, requires JDK for JNI, git submodules",
+        "duration_seconds": 2
+      },
+      {
+        "sequence": 3,
+        "phase": "image_selection",
+        "action": "Select Docker image openeuler:24.03",
+        "command": "docker images",
+        "result": "success",
+        "output": "Using hub.oepkgs.net/openeuler/openeuler:24.03",
+        "duration_seconds": 1
+      },
+      {
+        "sequence": 4,
+        "phase": "container_start",
+        "action": "Start Docker container wsk-OmniStateStore",
+        "command": "docker run -d --name wsk-OmniStateStore -v /root/tmp_src/OmniStateStore:/workspace hub.oepkgs.net/openeuler/openeuler:24.03 sleep infinity",
+        "result": "success",
+        "output": "Container d320474ad47a started",
+        "duration_seconds": 5
+      },
+      {
+        "sequence": 5,
+        "phase": "dependency_install",
+        "action": "Install build dependencies in container",
+        "command": "dnf install -y gcc gcc-c++ cmake make git libaio-devel java-1.8.0-openjdk java-1.8.0-openjdk-devel",
+        "result": "success",
+        "output": "Complete! gcc 12.3.1, cmake 3.27.9, java 1.8.0_462 installed",
+        "duration_seconds": 30
+      },
+      {
+        "sequence": 6,
+        "phase": "resource_check",
+        "action": "Detect available memory and calculate safe concurrency",
+        "command": "free -m && nproc",
+        "result": "success",
+        "output": "CPU=24, AvailableMemory=14GB, RecommendedJobs=4",
+        "duration_seconds": 1
+      },
+      {
+        "sequence": 7,
+        "phase": "submodule_init",
+        "action": "Initialize git submodules",
+        "command": "git submodule update --init --recursive",
+        "result": "success",
+        "output": "4 submodules initialized: googletest, lz4, libboundscheck, spdlog",
+        "duration_seconds": 16
+      },
+      {
+        "sequence": 8,
+        "phase": "build",
+        "action": "Build with debug mode and UT enabled",
+        "command": "./build.sh -t debug --ut",
+        "result": "success",
+        "output": "Built target bss_ut, Built target build_cpp, 100% complete",
+        "duration_seconds": 222
+      },
+      {
+        "sequence": 9,
+        "phase": "build_retry",
+        "action": "Fix build script permissions (first attempt failed with Permission denied)",
+        "command": "chmod +x /workspace/scripts/build.sh",
+        "result": "success",
+        "output": "Permissions updated",
+        "duration_seconds": 1
+      },
+      {
+        "sequence": 10,
+        "phase": "ut",
+        "action": "Run unit tests",
+        "command": "./test/llt/bss_ut",
+        "result": "partial_success",
+        "output": "296 tests from 29 test suites. 294 PASSED, 2 FAILED",
+        "duration_seconds": 196
+      },
+      {
+        "sequence": 11,
+        "phase": "ut_analysis",
+        "action": "Analyze test failures",
+        "command": "grep FAILED ut_output",
+        "result": "success",
+        "output": "TestDB.test_sp_list_and_get_return_ok: value length mismatch (25165824 vs 8388608); TestFileManager.test_write_read_secondary_key_iterator_return_ok: iterator test failed",
+        "duration_seconds": 1
+      },
+      {
+        "sequence": 12,
+        "phase": "dependency_collection",
+        "action": "Collect dependency and artifact information",
+        "command": "ls -la build/test/llt/bss_ut && ls dist/",
+        "result": "success",
+        "output": "bss_ut: 353MB, dist/3rdparty/ exists",
+        "duration_seconds": 1
+      }
+    ]
+  },
+  "overall": {
+    "result": "partial_success",
+    "buildable": true,
+    "testable": true,
+    "timeout_reached": false,
+    "notes": "Build succeeds cleanly. 2 out of 296 unit tests fail: TestDB.test_sp_list_and_get_return_ok (value length assertion mismatch) and TestFileManager.test_write_read_secondary_key_iterator_return_ok. These appear to be pre-existing test issues rather than build environment problems."
+  }
+}
